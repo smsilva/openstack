@@ -25,7 +25,7 @@ Memória RAM..: 32 GB
 Disco rígido.: Crucial Mx500 1 TB SS2 M.2 2280
 ```
 
-** 3. PenDrive **
+**3. PenDrive**
 
 O PenDrive será usado apenas para a instalação do CentOS 7.
 

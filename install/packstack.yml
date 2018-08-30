@@ -1,0 +1,24 @@
+---
+- hosts: osp
+  name: Install OpenStack using Packstack
+
+  tasks:
+
+    - name: generate packstack config file
+      shell: packstack --gen-answer-file={{ osp.resource_path }}/packstack-answers.cfg
+
+    - name: configure packstack answers file
+      block:
+        - shell: openstack-config --set {{ osp.resource_path }}/packstack-answers.cfg general {{ item.key }} {{ item.value }}
+          with_dict:
+            CONFIG_NEUTRON_OVS_BRIDGE_IFACES: "br-ex:{{ osp.network.nic }}"
+
+        - shell: openstack-config --set {{ osp.resource_path }}/packstack-answers.cfg general {{ item.key }} {{ item.value }}
+          with_dict: "{{ osp.packstack }}"
+
+    - name: packstack
+      shell: packstack --answer-file={{ osp.resource_path }}/packstack-answers.cfg --timeout=6000
+      
+    - name: configure bash completion for openstack commands
+      shell: >
+        openstack complete | sudo tee /etc/bash_completion.d/osc.bash_completion > /dev/null
