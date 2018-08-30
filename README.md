@@ -159,13 +159,19 @@ sed -i 's/#callback_whitelist = timer, mail/callback_whitelist = profile_tasks, 
 
 ## 4. Instalação usando PackStack ##
 
+Clone o repositório que contém os Playbooks Ansible:
+
 ```
 git clone https://github.com/smsilva/openstack.git
 ```
 
+Acesse o diretório de instalação:
+
 ```
 cd openstack/install/
 ```
+
+Teste para verificar a conectividade com o servidor onde o OpenStack será instalado:
 
 ```
 ansible -i hosts.yml -m ping osp
@@ -180,7 +186,7 @@ openstack.example.com | SUCCESS => {
 }
 ```
 
-Realiza a instalação usando PackStack:
+Configuração e Instalação usando PackStack:
 
 ```
 ansible-playbook -i hosts.yml install.yml
