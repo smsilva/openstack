@@ -133,14 +133,27 @@ DNS2=8.8.8.8
 DNS3=1.1.1.1
 ```
 
+Reinicie o NUC para testar a conectividade após o boot.
+
 ```
 reboot
 ```
 
+**Instale o Repositório Extra Packages for Enterprise Linux (EPEL)**
+
 ```
 yum install epel-release -y
-yum install git ansible -y
+```
 
+**Instale o Git e o Ansible**
+
+```
+yum install git ansible -y
+```
+
+Configure o Ansible para exibir o tempo de execução de cada tarefa executada:
+
+```
 sed -i 's/#callback_whitelist = timer, mail/callback_whitelist = profile_tasks, timer/g' /etc/ansible/ansible.cfg
 ```
 
