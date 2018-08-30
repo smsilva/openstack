@@ -14,7 +14,8 @@ O Hardware usado para montar meu laboratório foi:
 
 ```
 CIDR.............................: 192.168.1.0/24
-Endereço IP reservado para o NUC.: 192.168.1.1
+Endereço IP do roteador..........: 192.168.1.1
+Endereço IP reservado para o NUC.: 192.168.1.101
 ```
 
 **2. Mini PC Intel NUC 6I7KYK Skull Canyon**
