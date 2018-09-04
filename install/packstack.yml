@@ -3,21 +3,24 @@
   name: Install OpenStack using Packstack
 
   tasks:
+  
+    - set_fact:
+        answers_file_name: {{ osp.resource_path }}/packstack-answers.cfg
 
     - name: generate packstack config file
-      shell: packstack --gen-answer-file={{ osp.resource_path }}/packstack-answers.cfg
+      shell: packstack --gen-answer-file={{ answers_file_name }}
 
     - name: configure packstack answers file
       block:
-        - shell: openstack-config --set {{ osp.resource_path }}/packstack-answers.cfg general {{ item.key }} {{ item.value }}
+        - shell: openstack-config --set {{ answers_file_name }} general {{ item.key }} {{ item.value }}
+          with_dict: "{{ osp.packstack }}"
+
+        - shell: openstack-config --set {{ answers_file_name }} general {{ item.key }} {{ item.value }}
           with_dict:
             CONFIG_NEUTRON_OVS_BRIDGE_IFACES: "br-ex:{{ osp.network.nic }}"
 
-        - shell: openstack-config --set {{ osp.resource_path }}/packstack-answers.cfg general {{ item.key }} {{ item.value }}
-          with_dict: "{{ osp.packstack }}"
-
     - name: packstack
-      shell: packstack --answer-file={{ osp.resource_path }}/packstack-answers.cfg --timeout=6000
+      shell: packstack --answer-file={{ answers_file_name }} --timeout=6000
       
     - name: configure bash completion for openstack commands
       shell: >
