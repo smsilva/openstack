@@ -4,55 +4,55 @@
 
   tasks:
   
-    - name: create resource folder
-      file:
-        path: "{{ osp.resource_path }}"
-        state: directory
+  - name: create resource folder
+    file:
+      path: "{{ osp.resource_path }}"
+      state: directory
 
-    - name: install required packages
-      yum:
-        name: "{{ item }}"
-        state: latest
-      with_items:
-        - centos-release-openstack-queens
+  - name: install required packages
+    yum:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+      - centos-release-openstack-queens
 
-    - name: update openstack package
-      yum:
-        name: '*'
-        state: latest
-        
-    - name: install extra packstack packages
-      yum:
-        name: "{{ item }}"
-        state: latest
-      with_items:
-        - openstack-packstack
-        - openstack-utils
-        - python-pip
-        - python-openstackclient
-        - bash-completion
-        - bash-completion-extras
+  - name: update openstack package
+    yum:
+      name: '*'
+      state: latest
+      
+  - name: install extra packstack packages
+    yum:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+      - openstack-packstack
+      - openstack-utils
+      - python-pip
+      - python-openstackclient
+      - bash-completion
+      - bash-completion-extras
 
-    - name: update packages
-      yum:
-        name: '*'
-        state: latest
+  - name: update packages
+    yum:
+      name: '*'
+      state: latest
 
-    - name: update python pip
-      shell: >
-        pip install --upgrade pip
+  - name: update python pip
+    shell: >
+      pip install --upgrade pip
 
-    - name: disable NetworkManager and Firewall
-      systemd:
-        name: "{{ item }}"
-        state: stopped
-        enabled: no
-      with_items:
-        - NetworkManager
-        - firewalld
-        
-    - name: enable network service
-      systemd:
-        name: network
-        state: started
-        enabled: yes
+  - name: disable NetworkManager and Firewall
+    systemd:
+      name: "{{ item }}"
+      state: stopped
+      enabled: no
+    with_items:
+      - NetworkManager
+      - firewalld
+      
+  - name: enable network service
+    systemd:
+      name: network
+      state: started
+      enabled: yes

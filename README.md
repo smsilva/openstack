@@ -129,8 +129,6 @@ IPADDR=192.168.1.101
 NETMASK=255.255.255.0
 GATEWAY=192.168.1.1
 DNS1=192.168.1.1
-DNS2=8.8.8.8
-DNS3=1.1.1.1
 ```
 
 Reinicie o NUC para testar a conectividade após o boot.
@@ -155,6 +153,18 @@ Configure o Ansible para exibir o tempo de execução de cada tarefa executada:
 
 ```
 sed -i 's/#callback_whitelist = timer, mail/callback_whitelist = profile_tasks, timer/g' /etc/ansible/ansible.cfg
+```
+
+Configura o local do arquivo de log
+
+```
+sed -i 's/#log_path = /log_path = /g' /etc/ansible/ansible.cfg
+```
+
+Configura o local das Roles
+
+```
+sed -i 's/#roles_path/roles_path/g' /etc/ansible/ansible.cfg
 ```
 
 ## 4. Instalação usando PackStack ##
