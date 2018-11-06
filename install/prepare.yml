@@ -14,7 +14,7 @@
       name: "{{ item }}"
       state: latest
     with_items:
-      - centos-release-openstack-queens
+      - centos-release-openstack-rocky
 
   - name: update openstack package
     yum:
