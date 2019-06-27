@@ -11,10 +11,8 @@
 
   - name: install required packages
     yum:
-      name: "{{ item }}"
+      name: "centos-release-openstack-queens"
       state: latest
-    with_items:
-      - centos-release-openstack-queens
 
   - name: update openstack package
     yum:

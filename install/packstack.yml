@@ -5,7 +5,7 @@
   tasks:
   
     - set_fact:
-        answers_file_name: {{ osp.resource_path }}/packstack-answers.cfg
+        answers_file_name: "{{ osp.resource_path }}/packstack-answers.cfg"
 
     - name: generate packstack config file
       shell: packstack --gen-answer-file={{ answers_file_name }}
