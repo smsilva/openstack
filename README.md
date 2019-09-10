@@ -2,7 +2,7 @@
 
 Este repositório contém informações relacionadas ao meu aprendizado sobre OpenStack.
 
-Os scripts aqui mostrados foram testados usando o release Queens do projeto RDO.
+Os scripts aqui mostrados foram testados usando o release Queens do projeto RDO (Packstack).
 
 https://www.rdoproject.org/
 
