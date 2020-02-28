@@ -11,7 +11,7 @@
 
   - name: install required packages
     yum:
-      name: "centos-release-openstack-queens"
+      name: "centos-release-openstack-stein"
       state: latest
 
   - name: update openstack package
