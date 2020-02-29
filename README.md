@@ -1,6 +1,6 @@
 # OpenStack
 
-Este repositório contém informações relacionadas ao meu aprendizado sobre OpenStack.
+Este repositÃ³rio contÃ©m informaÃ§Ãµes relacionadas ao meu aprendizado sobre OpenStack.
 
 Os scripts aqui mostrados foram testados usando o release Queens do projeto RDO (Packstack).
 
@@ -8,35 +8,35 @@ https://www.rdoproject.org/
 
 ## Hardware
 
-O Hardware usado para montar meu laboratório foi:
+O Hardware usado para montar meu laboratï¿½rio foi:
 
 **1. Roteador Cisco LinkSys E900**
 
 ```
 CIDR.............................: 192.168.1.0/24
-Endereço IP do roteador..........: 192.168.1.1
-Endereço IP reservado para o NUC.: 192.168.1.101
+Endereï¿½o IP do roteador..........: 192.168.1.1
+Endereï¿½o IP reservado para o NUC.: 192.168.1.101
 ```
 
 **2. Mini PC Intel NUC 6I7KYK Skull Canyon**
 
 ```
 Processador..: I7-6770HQ 3.5 GHZ
-Memória RAM..: 32 GB
-Disco rígido.: Crucial Mx500 1 TB SS2 M.2 2280
+Memï¿½ria RAM..: 32 GB
+Disco rï¿½gido.: Crucial Mx500 1 TB SS2 M.2 2280
 ```
 
 **3. PenDrive**
 
-O PenDrive será usado apenas para a instalação do CentOS 7.
+O PenDrive serï¿½ usado apenas para a instalaï¿½ï¿½o do CentOS 7.
 
-# Instalação
+# Instalaï¿½ï¿½o
 
 ## 1. Roteador
 
-Primeiro resetei o roteador LinkSys às configurações de fábrica.
+Primeiro resetei o roteador LinkSys ï¿½s configuraï¿½ï¿½es de fï¿½brica.
 
-Em seguida, configurei uma senha no roteador para acesso administrativo e conectei o mesmo ao meu roteador do provedor de internet (porta LAN do roteador com acesso à internet à porta WAN do LinkSys).
+Em seguida, configurei uma senha no roteador para acesso administrativo e conectei o mesmo ao meu roteador do provedor de internet (porta LAN do roteador com acesso ï¿½ internet ï¿½ porta WAN do LinkSys).
 
 Em seguida conectei o roteador ao NUC usando um cabo de rede.
 
@@ -48,7 +48,7 @@ Instalaremos o CentOS 7 no NUC.
 
 http://isoredirect.centos.org/centos/7/isos/x86_64/CentOS-7-x86_64-Minimal-1804.iso
 
-### 2.2. Criação de um PenDrive de Boot
+### 2.2. Criaï¿½ï¿½o de um PenDrive de Boot
 
 Como ainda preciso usar Windows no trabalho usei o Rufus para criar um PenDrive de boot.
 
@@ -56,13 +56,13 @@ https://rufus.akeo.ie/
 
 ### 2.3. Instalando o CentOS 7
 
-Durante a Instalação do CentOS 7, alterei os seguintes parâmetros:
+Durante a Instalaï¿½ï¿½o do CentOS 7, alterei os seguintes parï¿½metros:
 
 **Localization Date/Time:** Americas/Sao Paulo timezone
 
-**Network & Hostname:** Habilitei a placa de rede para que já obtivesse um IP do roteador. Esse IP deixei reservado nas configurações de DHCP do roteador. No caso: **192.168.1.101**.
+**Network & Hostname:** Habilitei a placa de rede para que jï¿½ obtivesse um IP do roteador. Esse IP deixei reservado nas configuraï¿½ï¿½es de DHCP do roteador. No caso: **192.168.1.101**.
 
-**Installation destination:** Marquei a opção "I will configure partitioning"
+**Installation destination:** Marquei a opï¿½ï¿½o "I will configure partitioning"
 
 ```
   /boot     xfs  256 MiB
@@ -74,23 +74,23 @@ Durante a Instalação do CentOS 7, alterei os seguintes parâmetros:
 
 ```
 
-Pode prosseguir com o restante da instalação, informe uma senha para o usuário root e ao final, lembre-se de retirar o PenDrive e reiniciar o NUC.
+Pode prosseguir com o restante da instalaï¿½ï¿½o, informe uma senha para o usuï¿½rio root e ao final, lembre-se de retirar o PenDrive e reiniciar o NUC.
 
 ### 2.4 Configurando um par de chaves para facilitar o acesso ao NUC
 
-Para gerar um par de chaves, você pode seguir o ótimo tutorial da Digital Ocean:
+Para gerar um par de chaves, vocï¿½ pode seguir o ï¿½timo tutorial da Digital Ocean:
 
 https://www.digitalocean.com/community/tutorials/initial-server-setup-with-centos-7
 
 Caso pretenda acessar a partir do Windows, recomendo usar o Putty e que tenha instalado o Git para usar o Git Bash.
 
-Usando o Git Bash, você será capaz de gerar seu par de chaves no Windows.
+Usando o Git Bash, vocï¿½ serï¿½ capaz de gerar seu par de chaves no Windows.
 
-Após gerar as chaves, pode usar o PuTTY Key Generator no Windows para criar um arquivo com extensão PPK que pode ser usado em conjunto com o PuTTY para acessar o ambiente sem precisar sempre digitar a senha.
+Apï¿½s gerar as chaves, pode usar o PuTTY Key Generator no Windows para criar um arquivo com extensï¿½o PPK que pode ser usado em conjunto com o PuTTY para acessar o ambiente sem precisar sempre digitar a senha.
 
-## 3. Configurações iniciais do NUC ##
+## 3. Configuraï¿½ï¿½es iniciais do NUC ##
 
-Se tiver problemas com lentidão ao conectar via SSH, você pode desativar o uso de DNS para essa conexão:
+Se tiver problemas com lentidï¿½o ao conectar via SSH, vocï¿½ pode desativar o uso de DNS para essa conexï¿½o:
 
 ```
 sed -i 's/#UseDNS yes/UseDNS no/g' /etc/ssh/sshd_config
@@ -131,13 +131,13 @@ GATEWAY=192.168.1.1
 DNS1=192.168.1.1
 ```
 
-Reinicie o NUC para testar a conectividade após o boot.
+Reinicie o NUC para testar a conectividade apï¿½s o boot.
 
 ```
 reboot
 ```
 
-**Instale o Repositório Extra Packages for Enterprise Linux (EPEL)**
+**Instale o Repositï¿½rio Extra Packages for Enterprise Linux (EPEL)**
 
 ```
 yum install epel-release -y
@@ -149,7 +149,7 @@ yum install epel-release -y
 yum install git ansible -y
 ```
 
-Configure o Ansible para exibir o tempo de execução de cada tarefa executada:
+Configure o Ansible para exibir o tempo de execuï¿½ï¿½o de cada tarefa executada:
 
 ```
 sed -i 's/#callback_whitelist = timer, mail/callback_whitelist = profile_tasks, timer/g' /etc/ansible/ansible.cfg
@@ -167,21 +167,21 @@ Configura o local das Roles
 sed -i 's/#roles_path/roles_path/g' /etc/ansible/ansible.cfg
 ```
 
-## 4. Instalação usando PackStack ##
+## 4. Instalaï¿½ï¿½o usando PackStack ##
 
-Clone o repositório que contém os Playbooks Ansible:
+Clone o repositï¿½rio que contï¿½m os Playbooks Ansible:
 
 ```
 git clone https://github.com/smsilva/openstack.git
 ```
 
-Acesse o diretório de instalação:
+Acesse o diretï¿½rio de instalaï¿½ï¿½o:
 
 ```
 cd openstack/install/
 ```
 
-Teste para verificar a conectividade com o servidor onde o OpenStack será instalado:
+Teste para verificar a conectividade com o servidor onde o OpenStack serï¿½ instalado:
 
 ```
 ansible -i hosts.yml -m ping osp
@@ -196,10 +196,10 @@ openstack.example.com | SUCCESS => {
 }
 ```
 
-Configuração e Instalação usando PackStack:
+Configuraï¿½ï¿½o e Instalaï¿½ï¿½o usando PackStack:
 
 ```
 ansible-playbook -i hosts.yml install.yml
 ```
 
-A duração da instalação é de aproximadatamente 25 minutos com a minha conexão de internet (15 Mbps).
+A duraï¿½ï¿½o da instalaï¿½ï¿½o ï¿½ de aproximadatamente 25 minutos com a minha conexï¿½o de internet (15 Mbps).
