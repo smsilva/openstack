@@ -8,10 +8,10 @@ openstack_user_admin=admin
 openstack image create \
   --public \
   --disk-format qcow2 \
-  --min-disk 15 \
-  --min-ram 512 \
-  --file "/osp/images/centos7.qcow2" \
-  centos7
+  --min-disk 20 \
+  --min-ram 2048 \
+  --file "ubuntu-focal-server-cloud-amd64-20210810.img" \
+  ubuntu-focal-server-cloud-amd64-20210810
 
 openstack network create \
   --share \

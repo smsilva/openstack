@@ -69,7 +69,7 @@ network:
     enp0s3:
       dhcp4: no
       addresses:
-        - 192.168.68.132/24
+        - 192.168.68.134/24
       gateway4: 192.168.68.1
       nameservers:
           search: [home]
@@ -85,6 +85,8 @@ sudo rm -rf /usr/lib/python3/dist-packages/yaml
 sudo rm -rf /usr/lib/python3/dist-packages/PyYAML-*
 sudo rm -rf /usr/lib/python3/dist-packages/simplejson*
 
+rm local.conf
+
 cp ./samples/local.conf local.conf
 
 sed -i '/ADMIN_PASSWORD=/ s/ADMIN_PASSWORD.*/ADMIN_PASSWORD=stack/g' local.conf
@@ -93,7 +95,7 @@ sed -i '/RABBIT_PASSWORD=/ s/RABBIT_PASSWORD.*/RABBIT_PASSWORD=stackqueue/g' loc
 
 cat <<EOF | tee -a local.conf
 IP_VERSION=4
-HOST_IP=192.168.68.132
+HOST_IP=192.168.68.134
 FLOATING_RANGE="192.168.68.224/27"
 Q_FLOATING_ALLOCATION_POOL=start=192.168.68.226,end=192.168.68.254
 EOF
@@ -103,3 +105,11 @@ EOF
 echo "alias os=openstack" >> openrc
 
 . openrc
+
+openstack image create \
+  --public \
+  --disk-format qcow2 \
+  --min-disk 20 \
+  --min-ram 2048 \
+  --file ubuntu-focal-server-cloud-amd64-20210810.img \
+  ubuntu-focal-server-cloud-amd64-20210810
