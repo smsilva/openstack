@@ -60,6 +60,8 @@ cd devstack
 sudo sed -i '/#DNS=/ s/#DNS=.*/DNS=192.168.68.1 8.8.8.8/g' /etc/systemd/resolved.conf
 sudo systemctl restart systemd-resolved
 
+DEVSTACK_HOST_IP="192.168.68.140"
+
 sudo rm -rf /etc/netplan/00-installer-config.yaml
 
 cat <<EOF | sudo tee /etc/netplan/01-netcfg.yaml
@@ -69,7 +71,7 @@ network:
     enp0s3:
       dhcp4: no
       addresses:
-        - 192.168.68.134/24
+        - ${DEVSTACK_HOST_IP?}/24
       gateway4: 192.168.68.1
       nameservers:
           search: [home]
@@ -85,8 +87,6 @@ sudo rm -rf /usr/lib/python3/dist-packages/yaml
 sudo rm -rf /usr/lib/python3/dist-packages/PyYAML-*
 sudo rm -rf /usr/lib/python3/dist-packages/simplejson*
 
-rm local.conf
-
 cp ./samples/local.conf local.conf
 
 sed -i '/ADMIN_PASSWORD=/ s/ADMIN_PASSWORD.*/ADMIN_PASSWORD=stack/g' local.conf
@@ -95,14 +95,12 @@ sed -i '/RABBIT_PASSWORD=/ s/RABBIT_PASSWORD.*/RABBIT_PASSWORD=stackqueue/g' loc
 
 cat <<EOF | tee -a local.conf
 IP_VERSION=4
-HOST_IP=192.168.68.134
+HOST_IP=${DEVSTACK_HOST_IP?}
 FLOATING_RANGE="192.168.68.224/27"
 Q_FLOATING_ALLOCATION_POOL=start=192.168.68.226,end=192.168.68.254
 EOF
 
 ./stack.sh
-
-echo "alias os=openstack" >> openrc
 
 . openrc
 
